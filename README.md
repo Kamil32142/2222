@@ -7,7 +7,7 @@ python3 -m venv venv
 
 source venv/bin/activate (для Linux)
 
-venv|Scripts\activate (для Windows)
+venv\Scripts\activate (для Windows)
 
 # далее скачиваем все необходимые зависимости
 
