@@ -14,6 +14,7 @@ venv\Scripts\activate (для Windows)
 pip install -r requirements.txt
 
 # запускаем сервер в dev-режиме
+cd 2222
 
 cd lyceum
 
