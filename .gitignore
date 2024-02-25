@@ -160,4 +160,8 @@ cython_debug/
 #.idea/
 db.sqlite3
 /env
+<<<<<<< HEAD
 .github
+=======
+.github
+>>>>>>> 3b078d41d6c597d5a88f71622bf4527623f7d948
