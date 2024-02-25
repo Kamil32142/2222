@@ -11,9 +11,19 @@ venv\Scripts\activate (для Windows)
 
 # далее скачиваем все необходимые зависимости
 
-pip install -r requirements.txt
+## для запуска проекта требуется :
 
-# запускаем сервер в dev-режиме
+pip install -r requirements/prod.txt
+
+## для теста проекта требуется:
+
+pip install -r requirements/test.txt
+
+## для разработки проекта требуется:
+
+pip install -r requirements/dev.txt
+
+# Чтобы запустить сервер в dev-режиме
 cd 2222
 
 cd lyceum
