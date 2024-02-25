@@ -28,7 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 load_dotenv()
-SECRET_KEY = os.getenv('fake')
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # Application definition
 

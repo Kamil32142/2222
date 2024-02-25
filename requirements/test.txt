@@ -1,6 +1,2 @@
-sqlparse==0.4.4
-tzdata==2024.1
-mccabe==0.7.0
-pycodestyle==2.11.1
-pyflakes==3.2.0
-asgiref==3.7.2
+flake8==7.0.0
+Django==4.2
