@@ -17,4 +17,4 @@ pip install -r requirements.txt
 
 cd lyceum
 
-manage.py runserver
+python manage.py runserver
