@@ -18,7 +18,7 @@ load_dotenv()
 DEBUG = os.getenv('DJANGO_DEBUG')
 
 ALLOWED_HOSTS = list(
-    map(str.strip, os.getenv("DJANGO_ALLOWED_HOSTS", "*").split(","))
+    map(str.strip, os.getenv('DJANGO_ALLOWED_HOSTS', '*').split(','))
 )
 
 
