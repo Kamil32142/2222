@@ -23,16 +23,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
 load_dotenv()
-SECRET_KEY = os.getenv('SECRET_KEY')
+DEBUG = os.getenv('DJANGO_DEBUG')
+
+ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS')
+
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 # Application definition
 
 INSTALLED_APPS = [
+    'debug_toolbar',
     'homepage.apps.HomepageConfig',
     'about.apps.AboutConfig',
     'catalog.apps.CatalogConfig',
@@ -45,6 +46,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -52,6 +54,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+INTERNAL_IPS = [
+    '127.0.0.1',
 ]
 
 ROOT_URLCONF = 'lyceum.urls'

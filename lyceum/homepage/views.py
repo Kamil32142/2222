@@ -1,4 +1,5 @@
 from django.http import HttpResponse
 
+
 def home(request):
-    return HttpResponse("<h1>Главная</h1>")
+    return HttpResponse("<body>Главная</body>")
