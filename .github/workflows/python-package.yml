@@ -34,7 +34,6 @@ jobs:
         flake8 . 
     - name: django_test
       run: |
-        cd 2222
         cd lyceum
         python manage.py test
         
