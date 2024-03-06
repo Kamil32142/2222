@@ -26,7 +26,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv()
 DEBUG = os.getenv('DJANGO_DEBUG')
 
-ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS')
+ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS').split(',')
+
 
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
