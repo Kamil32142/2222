@@ -10,6 +10,7 @@ class StaticURLTests(TestCase):
         response = Client().get('/')
         self.assertEqual(response.status_code, HTTPStatus.OK)
 
+
 class StaticURLTest(TestCase):
     def test_catalog_int(self):
         response = Client().get('/catalog/1')
