@@ -2,100 +2,56 @@ from http import HTTPStatus
 
 from django.test import Client, TestCase
 
+import parameterized
+
 
 class StaticURLTests(TestCase):
     def test_catalog_endpoint(self):
         response = Client().get('/')
         self.assertEqual(response.status_code, HTTPStatus.OK)
 
-    def test_catalog_converter(self):
-        response = Client().get('/catalog/converter/1/')
-        self.assertEqual(response.status_code, HTTPStatus.OK)
 
-    def test_catalog_re0(self):
-        response = Client().get('/catalog/re/0/')
-        self.assertEqual(response.status_code, 404)
+class StaticURL(TestCase):
+    @parameterized.parameterized.expand([
+        ('0', HTTPStatus.NOT_FOUND),
+        ('1', HTTPStatus.OK),
+        ('01', HTTPStatus.NOT_FOUND),
+        ('010', HTTPStatus.NOT_FOUND),
+        ('10', HTTPStatus.OK),
+        ('100', HTTPStatus.OK),
+        ('abcd', HTTPStatus.NOT_FOUND),
+        ('aa4a', HTTPStatus.NOT_FOUND),
+        ('232%', HTTPStatus.NOT_FOUND),
+        ('-0', HTTPStatus.NOT_FOUND),
+        ('-1', HTTPStatus.NOT_FOUND),
+    ])
+    def test_catalog_re(self, perem, expected_status):
+        status_code = Client().get(f'/catalog/re/{perem}/').status_code
+        self.assertEqual(
+            status_code,
+            expected_status,
+            msg=f'/catalog/re/{perem}/ get not {expected_status}',
+        )
 
-    def test_catalog_re1(self):
-        response = Client().get('/catalog/re/1/')
-        self.assertEqual(response.status_code, 200)
 
-    def test_catalog_re01(self):
-        response = Client().get('/catalog/re/01/')
-        self.assertEqual(response.status_code, 404)
-
-    def test_catalog_re010(self):
-        response = Client().get('/catalog/re/010/')
-        self.assertEqual(response.status_code, 404)
-
-    def test_catalog_re10(self):
-        response = Client().get('/catalog/re/10/')
-        self.assertEqual(response.status_code, 200)
-
-    def test_catalog_re100(self):
-        response = Client().get('/catalog/re/100/')
-        self.assertEqual(response.status_code, 200)
-
-    def test_catalog_re00(self):
-        response = Client().get('/catalog/re/-0/')
-        self.assertEqual(response.status_code, 404)
-
-    def test_catalog_re21(self):
-        response = Client().get('/catalog/re/-21/')
-        self.assertEqual(response.status_code, 404)
-
-    def test_catalog_re000(self):
-        response = Client().get('/catalog/re/0.1/')
-        self.assertEqual(response.status_code, 404)
-
-    def test_catalog_re100rrr(self):
-        response = Client().get('/catalog/re/r3rr100rrr7/')
-        self.assertEqual(response.status_code, 404)
-
-    def test_catalog_re100spec(self):
-        response = Client().get('/catalog/re/100$/')
-        self.assertEqual(response.status_code, 404)
-
-    def test_converter_re0(self):
-        response = Client().get('/catalog/converter/0/')
-        self.assertEqual(response.status_code, 404)
-
-    def test_converter_re1(self):
-        response = Client().get('/catalog/converter/1/')
-        self.assertEqual(response.status_code, 200)
-
-    def test_converter_re01(self):
-        response = Client().get('/catalog/re/01/')
-        self.assertEqual(response.status_code, 404)
-
-    def test_converter_re010(self):
-        response = Client().get('/catalog/re/010/')
-        self.assertEqual(response.status_code, 404)
-
-    def test_converter_re10(self):
-        response = Client().get('/catalog/re/10/')
-        self.assertEqual(response.status_code, 200)
-
-    def test_converter_re100(self):
-        response = Client().get('/catalog/re/100/')
-        self.assertEqual(response.status_code, 200)
-
-    def test_converter_re00(self):
-        response = Client().get('/catalog/re/-0/')
-        self.assertEqual(response.status_code, 404)
-
-    def test_converter_re21(self):
-        response = Client().get('/catalog/re/-21/')
-        self.assertEqual(response.status_code, 404)
-
-    def test_converter_re000(self):
-        response = Client().get('/catalog/re/0.1/')
-        self.assertEqual(response.status_code, 404)
-
-    def test_converter_re100rrr(self):
-        response = Client().get('/catalog/re/r3rr100rrr7/')
-        self.assertEqual(response.status_code, 404)
-
-    def test_converter_re100spec(self):
-        response = Client().get('/catalog/re/100$/')
-        self.assertEqual(response.status_code, 404)
+class StaticUrlTest(TestCase):
+    @parameterized.parameterized.expand([
+        ('0', HTTPStatus.NOT_FOUND),
+        ('1', HTTPStatus.OK),
+        ('01', HTTPStatus.NOT_FOUND),
+        ('010', HTTPStatus.NOT_FOUND),
+        ('10', HTTPStatus.OK),
+        ('100', HTTPStatus.OK),
+        ('abcd', HTTPStatus.NOT_FOUND),
+        ('aa4a', HTTPStatus.NOT_FOUND),
+        ('232%', HTTPStatus.NOT_FOUND),
+        ('-0', HTTPStatus.NOT_FOUND),
+        ('-1', HTTPStatus.NOT_FOUND),
+    ])
+    def test_catalog_converter(self, peren, expected_status):
+        status_code = Client().get(f'/catalog/converter/{peren}/').status_code
+        self.assertEqual(
+            status_code,
+            expected_status,
+            msg=f'/catalog/converter/{peren}/ get not {expected_status}',
+        )
