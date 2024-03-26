@@ -40,13 +40,11 @@ cd lyceum
 python manage.py runserver
 ```
 # для того чтобы сделать Fixture /data.json пишем в терминал:
-```
-cd 2222
-```
-```
-cd lyceum
-```
+
 ```
 python manage.py dumpdata catalog > fixtures/data.json
+```
+```
+python manage.py dumpdata catalog --indent=3 > fixtures/data.json
 ```
 
